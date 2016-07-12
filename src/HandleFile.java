@@ -5,13 +5,12 @@ import java.util.Scanner;
 
 
 public class HandleFile {
-	private List<String> readedData;
-	private List<Double> readedValues;
+	private List<String> readedData;	//Tablica przechowująca dane przeczytane z pliku
+	private List<Double> readedValues;	//Tablica z przeczytanymi wartościami
 	public HandleFile(String filePath)
 	{
 		try (Scanner input = new Scanner(new File(filePath))) {
 			readedData = new ArrayList<String>();
-			int i = 0;
             while(input.hasNextLine())
             {
                readedData.add(input.nextLine());
@@ -34,20 +33,21 @@ public class HandleFile {
 				{
 					y = extractDigits(y);
 					readedValues.add(Double.parseDouble(y));
-					System.out.println(y);
+					//System.out.println(y);
 				}
 			}
 		}
 		
 	}
-	public double sumValues()
+	public double sumValues()	//Funkcja sumująca wszystkie wartości
 	{
 		double sum = 0;
 		for(Double y : readedValues)
 			sum += y;
 		return sum;
 	}
-	private String extractDigits(String src) {
+	private String extractDigits(String src)	//Funkcja wyłuskująca warrtość liczbową z pola amount
+	{
 	    StringBuilder builder = new StringBuilder();
 	    for (int i = 0; i < src.length(); i++) {
 	        char c = src.charAt(i);
